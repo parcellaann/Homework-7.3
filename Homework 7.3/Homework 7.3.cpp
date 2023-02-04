@@ -3,9 +3,84 @@
 
 #include <iostream>
 
+bool sqrt(int a)
+{
+	for (int i = 1; i < a; i++)
+	{
+		if (i*i == a)
+			return true;
+		else if (i*i > a)
+			return false;
+	}
+}
+
+int countSqrt(int a, int b, int c)
+{
+	int count = 0;
+	if (sqrt(a))
+		count++;
+	if (sqrt(b))
+		count++;
+	if (sqrt(c))
+		count++;
+	return count;
+}
+
+void countSqrt(int a, int b, int c, int *t)
+{
+	int count = 0;
+	if (sqrt(a))
+		count++;
+	if (sqrt(b))
+		count++;
+	if (sqrt(c))
+		count++;
+	*t = count;
+}
+
+void countSqrt(int a, int b, int c, int &p)
+{
+	if (sqrt(a))
+		p++;
+	if (sqrt(b))
+		p++;
+	if (sqrt(c))
+		p++;
+}
+
 int main()
 {
-    std::cout << "Hello World!\n";
+	int p = 0, t = 0, choose, a, b, c;
+	std::cout << "Choose one of the following options 1, 2 or 3: ";
+	std::cin >> choose;
+	std::cout << "Enter a: a = ";
+	std::cin >> a;
+	std::cout << "Enter b: b = ";
+	std::cin >> b;
+	std::cout << "Enter c: c = ";
+	std::cin >> c;
+	switch (choose)
+	{
+	case 1:
+	{
+		std::cout << "count = " << countSqrt(a, b, c) << "\n";
+		break;
+	}
+	case 2:
+	{
+		countSqrt(a, b, c, &t);
+		std::cout << "count = " << t << "\n";
+		break;
+	}
+	case 3:
+	{
+		countSqrt(a, b, c, p);
+		std::cout << "count = " << p << "\n";
+		break;
+	}
+	default:
+		std::cout << "Wrong option!\n";
+	}
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
